@@ -169,10 +169,4 @@ spawn(function()
 end)
 
 
-spawn(function()
-    game.Players.PlayerAdded:Connect(function(Player)
-        Player.CharacterAdded:Connect(function(char)
-            FpsBoost()
-        end)
-    end)
-end)
+FpsBoost()
