@@ -144,3 +144,8 @@ spawn(function()
 	end)
 end)
 FpsBoost()
+
+game.Players.PlayerAdded:Connect(function()
+	game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Extras"):WaitForChild("ChangeLastDevice"):FireServer("Phone")
+end)
+
