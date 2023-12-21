@@ -95,7 +95,6 @@ function FpsBoost()
 end
 
 
-
 spawn(function()
 	while wait() do
 		pcall(function()
@@ -104,8 +103,18 @@ spawn(function()
                 wait()
                 game.Players.LocalPlayer.Character.Humanoid.Health = 0
             else
-                wait(.5)
-				toTarget(game:GetService("Workspace").Christmas.CoinContainer.Coin_Server.CFrame)
+				local place = workspace:GetChildren()	
+				for i,v in pairs(place) do	    
+					local vChildren = v:GetChildren()
+					for i,child in pairs(vChildren) do
+						if child.Name == "CoinContainer" then
+							if child.Coin_Server:FindFirstChild("Coin") ~= nil then
+								wait(.5)
+								game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = toTarget(child.Coin_Server.Coin.CFrame)
+							end
+						end
+					end	
+				end
             end
 		end)
 	end
