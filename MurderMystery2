@@ -32,7 +32,7 @@ local function toTarget(...)
 	local tweenfunc = {}
 	local Distance = (RealTarget.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).Magnitude
 
-	Speed =30
+	Speed = 20
 
 	local tween_s = game:service"TweenService"
 	local info = TweenInfo.new((RealTarget.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).Magnitude/Speed, Enum.EasingStyle.Linear)
@@ -174,26 +174,13 @@ function ServerHop()
 	until not Next
 end
 
-local Blacklist = {
-	"NoBodyNoPassion",
-	"iiBxNR",
-	"CrystalsAsset",
-	"0bbyButYouAre0nABike",
-	"dididudark",
-	"dasdas2qewqe",
-	"ImagePictureIcon",
-	"gfvbvcbhrghgfnfghf",
-	"FarmCandle",
-	"FARMCOlN",
-	"nb_np1",
-	"nb_np2",
-	"BubbIeNon1",
-	"BubbIeNon2",
-	"Igptqp",
-	"Igptqps"
-}
-for i = 1, #Blacklist do
-	if Blacklist[i] == game.Players.Name then
+game.Players.PlayerAdded:Connect(function()
+	if #game:GetService("Players"):GetPlayers() <= 2 then
 		ServerHop()
 	end
-end
+end)
+game.Players.PlayerRemoving:Connect(function()
+	if #game:GetService("Players"):GetPlayers() <= 2 then
+		ServerHop()
+	end
+end)
