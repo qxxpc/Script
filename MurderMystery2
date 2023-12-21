@@ -59,30 +59,6 @@ function TeleportToLobby()
 end
 
 
-function GodMode()
-    if game.Players.LocalPlayer.Character then
-        if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") then
-            for _, accessory in pairs(game.Players.LocalPlayer.Character.Humanoid:GetAccessories()) do
-                table.insert(accessories, accessory:Clone())
-            end
-            game.Players.LocalPlayer.Character.Humanoid.Name = "boop"
-        end
-        local v = game.Players.LocalPlayer.Character["boop"]:Clone()
-        v.Parent = game.Players.LocalPlayer.Character
-        v.Name = "Humanoid"
-        wait(0.1)
-        game.Players.LocalPlayer.Character["boop"]:Destroy()
-        workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character.Humanoid
-        for _, accessory in pairs(accessories) do
-            game.Players.LocalPlayer.Character.Humanoid:AddAccessory(accessory)
-        end
-        game.Players.LocalPlayer.Character.Animate.Disabled = true
-        wait(0.1)
-        game.Players.LocalPlayer.Character.Animate.Disabled = false
-    end
-end
-
-
 function FpsBoost()
 	local decalsyeeted = true
 	local g = game
@@ -129,7 +105,7 @@ spawn(function()
                 game.Players.LocalPlayer.Character.Humanoid.Health = 0
             else
                 wait(.5)
-				toTarget(game:GetService("Workspace").Christmas.CoinContainer.Coin_Server.Coin.MainCoin.CFrame)
+				toTarget(game:GetService("Workspace").Christmas.CoinContainer.Coin_Server.CFrame)
             end
 		end)
 	end
@@ -158,12 +134,4 @@ spawn(function()
         end)
 	end)
 end)
-
-    game.Players.PlayerAdded:Connect(function(Player)
-        Player.CharacterAdded:Connect(function(char)
-            GodMode()
-        end)
-    end)
-
-
 FpsBoost()
