@@ -175,12 +175,12 @@ function ServerHop()
 end
 
 game.Players.PlayerAdded:Connect(function()
-	if #game:GetService("Players"):GetPlayers() <= 2 then
+	if #game:GetService("Players"):GetPlayers() < 2 then
 		ServerHop()
 	end
 end)
 game.Players.PlayerRemoving:Connect(function()
-	if #game:GetService("Players"):GetPlayers() <= 2 then
+	if #game:GetService("Players"):GetPlayers() < 2 then
 		ServerHop()
 	end
 end)
