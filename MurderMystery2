@@ -129,7 +129,7 @@ spawn(function()
                 game.Players.LocalPlayer.Character.Humanoid.Health = 0
             else
                 wait(.5)
-                toTarget(game:GetService("Workspace").Normal.CoinContainer.Coin_Server.Coin.MainCoin.CFrame)
+				toTarget(game:GetService("Workspace").Christmas.CoinContainer.Coin_Server.Coin.MainCoin.CFrame)
             end
 		end)
 	end
@@ -159,14 +159,11 @@ spawn(function()
 	end)
 end)
 
-spawn(function()
     game.Players.PlayerAdded:Connect(function(Player)
         Player.CharacterAdded:Connect(function(char)
-            wait(5)
             GodMode()
         end)
     end)
-end)
 
 
 FpsBoost()
