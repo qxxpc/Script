@@ -92,25 +92,23 @@ function FpsBoost()
 		end
 	end	
 end
+
+function FarmCoin()
+	for i,v in pairs(workspace:GetChildren()) do	    
+		for i,child in pairs(v:GetChildren()) do
+			if child.Name == "CoinContainer" then
+				if child.Coin_Server:FindFirstChild("Coin") ~= nil then
+					wait(.5)
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = toTarget(child.Coin_Server.Coin.CFrame)
+				end
+			end
+		end	
+	end
+end
 spawn(function()
 	while wait() do
 		pcall(function()
-            if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("MainGUI").Lobby.Dock.CoinBag.Full.Visible == true then
-                toTarget(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame)
-                wait()
-                game.Players.LocalPlayer.Character.Humanoid.Health = 0
-            else
-				for i,v in pairs(workspace:GetChildren()) do	    
-					for i,child in pairs(v:GetChildren()) do
-						if child.Name == "CoinContainer" then
-							if child.Coin_Server:FindFirstChild("Coin") ~= nil then
-								wait(.5)
-								game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = toTarget(child.Coin_Server.Coin.CFrame)
-							end
-						end
-					end	
-				end
-            end
+			FarmCoin()
 		end)
 	end
 end)
@@ -167,3 +165,4 @@ function ServerHop()
 		Next = Servers.nextPageCursor
 	until not Next
 end
+
