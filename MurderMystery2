@@ -173,3 +173,16 @@ function ServerHop()
 		Next = Servers.nextPageCursor
 	until not Next
 end
+
+spawn(function()
+	while wait() do
+		if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("DeviceSelect") then
+			local events = {"MouseButton1Click", "MouseButton1Down", "Activated"}
+			for i,v in pairs(events) do
+				for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.DeviceSelect.Container.Phone.Button[v])) do
+					v:Fire()
+				end
+			end
+		end
+	end
+end)
