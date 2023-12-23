@@ -8,7 +8,21 @@ game:GetService("CoreGui").RobloxPromptGui.promptOverlay.ChildAdded:Connect(func
 		game:GetService("TeleportService"):Teleport(game.PlaceId)
 	end
 end)
-
+spawn(function()
+    game:GetService("RunService").Stepped:Connect(function()
+		pcall(function()
+			if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("DeviceSelect") then
+				game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Extras"):WaitForChild("ChangeLastDevice"):FireServer("Phone")
+				local events = {"MouseButton1Click", "MouseButton1Down", "Activated"}
+				for i,v in pairs(events) do
+					for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.DeviceSelect.Container.Phone.Button[v])) do
+						v:Fire()
+					end
+				end
+			end
+        end)
+	end)
+end)
 game:GetService("Players").LocalPlayer.Idled:connect(function()
 	game:GetService("VirtualUser"):Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
 	wait(1)
@@ -93,8 +107,6 @@ function FpsBoost()
 		end
 	end	
 end
-
-
 spawn(function()
 	while wait() do
 		pcall(function()
@@ -103,10 +115,8 @@ spawn(function()
                 wait()
                 game.Players.LocalPlayer.Character.Humanoid.Health = 0
             else
-				local place = workspace:GetChildren()	
-				for i,v in pairs(place) do	    
-					local vChildren = v:GetChildren()
-					for i,child in pairs(vChildren) do
+				for i,v in pairs(workspace:GetChildren()) do	    
+					for i,child in pairs(v:GetChildren()) do
 						if child.Name == "CoinContainer" then
 							if child.Coin_Server:FindFirstChild("Coin") ~= nil then
 								wait(.5)
@@ -172,17 +182,3 @@ function ServerHop()
 		Next = Servers.nextPageCursor
 	until not Next
 end
-
-spawn(function()
-	while wait() do
-		if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("DeviceSelect") then
-			game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Extras"):WaitForChild("ChangeLastDevice"):FireServer("Phone")
-			local events = {"MouseButton1Click", "MouseButton1Down", "Activated"}
-			for i,v in pairs(events) do
-				for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.DeviceSelect.Container.Phone.Button[v])) do
-					v:Fire()
-				end
-			end
-		end
-	end
-end)
