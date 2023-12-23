@@ -8,21 +8,6 @@ game:GetService("CoreGui").RobloxPromptGui.promptOverlay.ChildAdded:Connect(func
 		game:GetService("TeleportService"):Teleport(game.PlaceId)
 	end
 end)
-spawn(function()
-    game:GetService("RunService").Stepped:Connect(function()
-		pcall(function()
-			if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("DeviceSelect") then
-				game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Extras"):WaitForChild("ChangeLastDevice"):FireServer("Phone")
-				local events = {"MouseButton1Click", "MouseButton1Down", "Activated"}
-				for i,v in pairs(events) do
-					for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.DeviceSelect.Container.Phone.Button[v])) do
-						v:Fire()
-					end
-				end
-			end
-        end)
-	end)
-end)
 game:GetService("Players").LocalPlayer.Idled:connect(function()
 	game:GetService("VirtualUser"):Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
 	wait(1)
