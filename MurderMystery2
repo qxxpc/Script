@@ -169,7 +169,7 @@ FpsBoost()
 
 
 spawn(function()
-	while wait() do
+	while wait(1) do
 		local events = {"MouseButton1Click", "MouseButton1Down", "Activated"}
 		if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("DeviceSelect") then
 			for i,v in pairs(events) do
