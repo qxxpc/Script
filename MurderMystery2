@@ -166,3 +166,23 @@ function ServerHop()
 	until not Next
 end
 
+
+spawn(function()
+	while wait() do
+		local events = {"MouseButton1Click", "MouseButton1Down", "Activated"}
+		if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("DeviceSelect") then
+			for i,v in pairs(events) do
+				for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("DeviceSelect").Container.Tablet.Button[v])) do
+					v:Fire()
+				end
+			end
+		end
+		if game:GetService("Players").LocalPlayer.PlayerGui.CrossPlatform.Christmas2023.Container.EventFrames.BattlePass.Visible == false then
+			for i,v in pairs(events) do
+				for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.CrossPlatform.Christmas2023.Container.Navigation.Container.BattlePass.Button[v])) do
+					v:Fire()
+				end
+			end
+		end
+	end
+end)
