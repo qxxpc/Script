@@ -177,12 +177,13 @@ spawn(function()
 				end
 			end
 		end
+		if game:GetService("Players").LocalPlayer.PlayerGui.CrossPlatform.Christmas2023.Visible == false then
+			game:GetService("Players").LocalPlayer.PlayerGui.CrossPlatform.Christmas2023.Visible = true
+		end
 		if game:GetService("Players").LocalPlayer.PlayerGui.CrossPlatform.Christmas2023.Container.EventFrames.BattlePass.Visible == false then
-			for i,v in pairs(events) do
-				for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.CrossPlatform.Christmas2023.Container.Navigation.Container.BattlePass.Button[v])) do
-					v:Fire()
-				end
-			end
+			game:GetService("Players").LocalPlayer.PlayerGui.CrossPlatform.Christmas2023.Container.Navigation.Visible = false
+			wait(.5)
+			game:GetService("Players").LocalPlayer.PlayerGui.CrossPlatform.Christmas2023.Container.EventFrames.BattlePass.Visible = true
 		end
 	end
 end)
